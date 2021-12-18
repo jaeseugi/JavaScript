@@ -3,8 +3,6 @@
 // yse this for Valina Javascript
 'use strict'
 
-const startLog = key => console.log(`################### ${key} ################`);
-
 // 2. Variable, rw(read/write)
 // let (added in ES6)
 startLog('let');
