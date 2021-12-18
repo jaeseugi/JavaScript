@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript-Include</title>
+    <!-- 
+        <script src="./main.js"></script>
+        1) head
+        처리과정 : HTMLparsing처리를 블럭한뒤 .js를 fetch, execute 후 re-HTMLparsing 처리한다.
+        .js 사이즈가 크거나 혹은 인터넷이 느린경우, 컨텐츠가 사용자에게 보여지는데까지 많은 시간이 걸림.
+    -->
+
+    <!-- 
+        <script async src="./main.js"></script>
+        3) head + async
+        처리과정 : HTMLparsing중 .js을 병렬적으로 fetch한다. 완료되면 파싱작업을 블럭하고 execute후 re-HTMLparsing 처리한다.
+        장점 : .js을 병렬적으로 fetch하므로, 다운로드 받는 시간이 줄어듬.
+        단점 : HTMLparsing 완료되기전 .js실행중에 dom을 조작하는경우, 해당 시점에서 html이 정의되지 않을수도 있음.
+        사용자가 컨텐츠를 보는데 여전히 시간이 걸릴수있는 단점 발생.
+
+        * 다수의 .js 존재시, 먼저 다운로드 완료된 .js가 우선 실행된다. 즉, 정의된 .js 순서를 보장할 수가 없다. 순서에 의존적일 경우 문제가 된다.
+    -->
+
+    <script defer src="./main.js"></script>
+    <!-- 
+        4) head + defer
+        처리과정 : HTMLparsing 중 .js을 병렬적으로 fetch하면서, HTMLparsing 완료후 execute 처리한다.
+        가정 효휼적이고 안정적인 옵션이다.
+
+        * 다수의 .js 존재시, 정의된 순서에 때라 .js가 실행된다.
+    -->
+
+</head>
+<body>
+    
+    <!-- 
+        <script src="./main.js"></script>
+        2) body의 끝 부분
+        처리과정 : HTMLparsing 완료 후 .js를 fetch, execute 처리한다.
+        장점 : 사용자가 기본적인 컨텐츠를 빨리 접할수 있다.
+        단점 : .js 실행되기전 사용자가 컨텐츠를 접할수 있기때문에, 
+        의미있는 .js(data 통신 및 dom control)이라면 fetch, excute 처리 동안 기다려야한다.
+    -->
+</body>
+</html>
